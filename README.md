@@ -26,6 +26,5 @@ Example Playbook
     - hosts: servers
       roles:
          - role: krittin.ha_k3s
-           var:
-             k3s_master_lb_ip_address: lb.my-k3s-master
-             k3s_master_lb_dns_name: 10.10.1.1
+           k3s_master_lb_ip_address: lb.my-k3s-master
+           k3s_master_lb_dns_name: 10.10.1.1
