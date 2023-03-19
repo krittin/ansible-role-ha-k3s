@@ -1,0 +1,13 @@
+k3s_version: v1.24.7+k3s1
+k3s_master_lb_dns_name: your-k3s-master-lb-dns-name
+k3s_master_lb_ip_address: 10.20.2.2
+required_packages:
+  - iptables
+  - vim
+  - telnet
+  - python3-pip
+  - bash-completion
+required_pip_packages:
+  - kubernetes
+  - jsonpatch
+  - pyyaml  

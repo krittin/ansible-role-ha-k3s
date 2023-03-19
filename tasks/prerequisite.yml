@@ -1,0 +1,21 @@
+- name: check if hardware is raspberry pi
+  lineinfile:
+    path: /proc/cpuinfo
+    regexp: '^Hardware\s+:\s+BCM2835$'
+    state: absent
+  check_mode: yes
+  register: raspberrypi_chip
+
+- import_tasks: enable_memory_cgroup.yml
+  when: 'raspberrypi_chip.found == 1'
+
+- name: install packages
+  package: 
+    name: "{{ required_packages }}"
+
+- name: install libraries 
+  pip:
+    name: "{{ required_pip_packages }}"
+
+- iptables: 
+    flush: yes

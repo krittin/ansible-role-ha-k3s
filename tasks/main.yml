@@ -1,0 +1,5 @@
+- include_tasks: prerequisite.yml
+- include_tasks: install_masters.yml
+  when: "'masters' in group_names"
+- include_tasks: install_workers.yml
+  when: "'workers' in group_names"

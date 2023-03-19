@@ -1,0 +1,36 @@
+- block:
+  - name: install k3s on 1st master
+    shell: |
+      curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION={{ k3s_version }} sh -s server \
+      --disable traefik,servicelb \
+      --tls-san {{ k3s_master_lb_dns_name }} \
+      --tls-san {{ k3s_master_lb_ip_address }} \
+      --cluster-init
+
+  - name: get token for nodes
+    slurp:
+      src: /var/lib/rancher/k3s/server/token
+    register: k3s_token
+
+  delegate_to: "{{ groups['masters'][0] }}"
+  run_once: yes
+
+- name: install k3s on other masters
+  shell: |
+    curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION={{ k3s_version }} sh -s server \
+    --token {{ k3s_token['content'] | b64decode | trim }} \
+    --disable traefik,servicelb \
+    --tls-san {{ k3s_master_lb_dns_name }} \
+    --tls-san {{ k3s_master_lb_ip_address }} \
+    --server https://{{ hostvars[groups['masters'][0]]['ansible_default_ipv4']['address'] }}:6443
+  throttle: 1
+  when: "not inventory_hostname in groups['masters'][0]"
+
+- name: enable kubectl autocompletion
+  lineinfile:
+    path: /root/.bashrc
+    line: "{{ item }}"
+  loop: 
+    - "source /etc/bash_completion"
+    - "source <(kubectl completion bash)"
+

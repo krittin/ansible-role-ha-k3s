@@ -1,0 +1,20 @@
+galaxy_info:
+  role_name: ha-k3s
+  author: krittin (https://github.com/krittin)
+  description: Install Highly Available k3s cluster
+
+  license: MIT
+
+  min_ansible_version: 2.12
+
+  platforms:
+  - name: Debian GNU/Linux
+    versions:
+    - 11 (bullseye)
+
+  galaxy_tags: 
+    - k3s
+    - kubernetes
+    - docker
+    - containerd
+
