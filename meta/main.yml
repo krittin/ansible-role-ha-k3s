@@ -1,5 +1,5 @@
 galaxy_info:
-  role_name: hak3s
+  role_name: ha_k3s
   namespace: krittin
   author: krittin (https://github.com/krittin)
   description: Install Highly Available k3s cluster
