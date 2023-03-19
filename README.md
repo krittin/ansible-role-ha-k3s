@@ -8,8 +8,9 @@ Requirements
 
 * At least 3 and odd number of master nodes
 * 1 or more worker nodes
-* Nodes need to have memory cgroup enabled. If nodes are Raspberry Pi, the role will do that for you
+* Memory cgroup enabled on the nodes. If nodes are Raspberry Pi, the role will do that for you
 * A fixed registration address that loadbalances to master nodes, more detail at https://docs.k3s.io/datastore/ha#3-configure-the-fixed-registration-address
+* Nodes allocated to host groups named 'masters' and 'workers' in inventory 
 
 Role Variables
 --------------
@@ -24,7 +25,7 @@ Example Playbook
 
     - hosts: servers
       roles:
-         - role: krittin.ha-k3s
+         - role: krittin.ha_k3s
            var:
              k3s_master_lb_ip_address: lb.my-k3s-master
              k3s_master_lb_dns_name: 10.10.1.1
