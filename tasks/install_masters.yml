@@ -33,4 +33,3 @@
   loop: 
     - "source /etc/bash_completion"
     - "source <(kubectl completion bash)"
-
