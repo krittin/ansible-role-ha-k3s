@@ -10,7 +10,7 @@ Requirements
 * 1 or more worker nodes
 * Memory cgroup enabled on the nodes. If nodes are Raspberry Pi, the role will do that for you
 * A fixed registration address that loadbalances to master nodes, more detail at https://docs.k3s.io/datastore/ha#3-configure-the-fixed-registration-address
-* Nodes allocated to host groups named 'masters' and 'workers' in inventory 
+* Nodes allocated to host groups named ```[masters]``` and ```[workers]``` in inventory 
 
 Role Variables
 --------------
