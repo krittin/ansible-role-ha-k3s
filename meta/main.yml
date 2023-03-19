@@ -9,9 +9,9 @@ galaxy_info:
   min_ansible_version: 2.12
 
   platforms:
-  - name: Debian GNU/Linux
+  - name: Debian
     versions:
-    - 11 (bullseye)
+    - bullseye
 
   galaxy_tags: 
     - k3s
