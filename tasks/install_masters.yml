@@ -33,3 +33,6 @@
   loop: 
     - "source /etc/bash_completion"
     - "source <(kubectl completion bash)"
+
+- name: taint master nodes
+  command: "kubectl taint --overwrite=true nodes {{ ansible_hostname }} role=master:NoSchedule"
